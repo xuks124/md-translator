@@ -1,28 +1,38 @@
-# MD Translator - AI 批量 Markdown 翻译工具
+# AI批量Markdown翻译工具
 
-一键批量翻译 Markdown 文档，保持格式完整。支持 DeepSeek/OpenAI API。
+[English](./README_EN.md) | 中文
+
+## 简介
+利用AI API批量翻译Markdown文件，支持多模型切换、并发翻译、格式保留。
 
 ## 特性
-
-- 保持 Markdown 格式（代码块、表格、链接、图片不变）
-- 批量处理整个目录
-- 多语言目标
-- 增量翻译（跳过已翻译文件）
-- 低成本的 AI API
+- 批量翻译整个目录的.md文件
+- 支持OpenAI兼容API（One-API、DeepSeek、通义千问等）
+- 自动保持Markdown格式不变
+- 断点续传
+- 率限制控制
 
 ## 快速开始
-
 ```bash
+git clone https://github.com/xuks124/md-translator.git
+cd md-translator
 pip install -r requirements.txt
-python translate.py --input ./docs --target en --api-key your_key
+
+# 配置API密钥
+export API_KEY="your-api-key"
+export API_BASE="https://api.openai.com/v1"  # 或你的One-API地址
+
+# 开始翻译
+python translate.py --input ./docs --target-lang en
 ```
 
-## 使用场景
+## 配置
+支持通过环境变量或配置文件设置：
+- `API_KEY`: API密钥
+- `API_BASE`: API地址
+- `MODEL`: 模型名称（默认 deepseek-chat）
+- `CONCURRENCY`: 并发数（默认 3）
+- `TARGET_LANG`: 目标语言（默认 en）
 
-- 国际化项目文档
-- 技术博客多语言发布
-- 开源项目 README 翻译
-
-## 推广
-
-使用 [OneAPI 聚合网关](https://43.106.23.0:3000) 统一管理多种 AI API，降低翻译成本。
+## License
+MIT
